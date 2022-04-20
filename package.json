@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "compile": "tsc"
+    "compile": "tsc --watch",
+		"run": "node build/app.js"
   },
   "author": "",
   "license": "ISC",
