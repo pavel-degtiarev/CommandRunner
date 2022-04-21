@@ -1,3 +1,4 @@
+import { ChildProcessWithoutNullStreams } from "child_process";
 import { IOutputHandler } from "../output/outputHandlerInterface";
 import { OutputStream } from "../output/outputStream";
 import { ICommand } from "./commandInterface";
@@ -8,12 +9,12 @@ export abstract class Executor<Input> {
 	async execute() {
 		const data = await this.getParameters();
 		const command = this.buildCommand(data);
-		const spawn = this.spawnCommand(command);
-		this.streamResult(spawn);
+		const spawnStream = this.spawnCommand(command);
+		this.streamResult(spawnStream);
 	}
 
-	abstract getParameters(): Input;
+	abstract getParameters(): Promise<Input>;
 	abstract buildCommand(data: Input): ICommand;
-	abstract spawnCommand(command: ICommand): OutputStream;
-	abstract streamResult(stream: OutputStream): void;
+	abstract spawnCommand(command: ICommand): ChildProcessWithoutNullStreams;
+	abstract streamResult(stream: ChildProcessWithoutNullStreams): void;
 }

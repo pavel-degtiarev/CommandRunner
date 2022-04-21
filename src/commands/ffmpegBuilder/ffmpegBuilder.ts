@@ -36,7 +36,7 @@ export class FfmpegBuilder {
 		args.push(this.output);
 
 		return {
-			command: "ffmpeg",
+			command: "/Users/paul/Develop/CommandRunner/ffmpeg",
 			args: args,
 		};
 	}
